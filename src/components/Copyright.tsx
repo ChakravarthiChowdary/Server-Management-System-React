@@ -7,6 +7,12 @@ const Copyright = (props: any) => {
       color="text.secondary"
       align="center"
       {...props}
+      style={{
+        position: "absolute",
+        bottom: 20,
+        right: 0,
+        left: 0,
+      }}
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">

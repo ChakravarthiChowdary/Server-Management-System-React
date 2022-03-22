@@ -85,7 +85,7 @@ export default function SignIn() {
             <Grid container>
               <Grid item xs>
                 {/* <Link href="#" variant="body2"> */}
-                <RouterLink to="/">
+                <RouterLink to="/forgotpassword">
                   <Typography variant="body2">Forgot password?</Typography>
                 </RouterLink>
                 {/* </Link> */}

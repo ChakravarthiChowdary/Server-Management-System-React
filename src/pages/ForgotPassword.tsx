@@ -3,19 +3,18 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import LockResetIcon from "@mui/icons-material/LockReset";
 import { Link as RouterLink } from "react-router-dom";
 import Copyright from "../components/Copyright";
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function ForgotPassword() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -38,10 +37,10 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
+            <LockResetIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Forgot Password
           </Typography>
           <Box
             component="form"
@@ -50,39 +49,6 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                  size="small"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                  size="small"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="username"
-                  label="Username"
-                  name="username"
-                  size="small"
-                />
-              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -98,24 +64,11 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  name="verificationcode"
+                  label="Verification Code"
+                  id="verificationcode"
                   size="small"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="confirmpassword"
-                  label="Confirm Password"
-                  type="password"
-                  id="confirmpassword"
-                  autoComplete="new-password"
-                  size="small"
+                  disabled
                 />
               </Grid>
             </Grid>
@@ -131,7 +84,7 @@ export default function SignUp() {
               <Grid item>
                 <RouterLink to="/">
                   <Typography variant="body2">
-                    Already have an account? Sign in
+                    Remember your account? Sign in
                   </Typography>
                 </RouterLink>
               </Grid>

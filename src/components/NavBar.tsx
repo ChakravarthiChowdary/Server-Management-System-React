@@ -9,16 +9,16 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import { useAppSelector } from "../store/store";
+import { useAppDispatch, useAppSelector } from "../store/store";
 import { Link } from "react-router-dom";
-
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import { AUTH_SIGN_OUT } from "../store/actions/authActions";
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [pages, setPages] = React.useState(["Home", "Sign In"]);
   const user = useAppSelector((state) => state.auth.user);
+  const dispatch = useAppDispatch();
 
   const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
@@ -35,12 +35,18 @@ const NavBar = () => {
     setAnchorElUser(null);
   };
 
+  const linkClickedHandler = (page: string) => {
+    if (page === "Sign out") {
+      dispatch({ type: AUTH_SIGN_OUT });
+    }
+  };
+
   React.useEffect(() => {
     let updatedPages: string[] = [...pages];
     if (user) {
-      updatedPages.push("Home");
+      updatedPages = ["Home", "Sign out"];
     } else {
-      updatedPages = updatedPages.filter((page) => page !== "Home");
+      updatedPages = ["Home", "Sign In"];
     }
     updatedPages.sort(function (a, b) {
       if (a < b) {
@@ -98,8 +104,14 @@ const NavBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Link to={page === "Home" || page === "Sign In" ? "/" : "/"}>
-                    <Typography textAlign="center">{page}</Typography>
+                  <Link
+                    to={
+                      page === "Home" || page === "Sign In" ? "/" : `/${page}`
+                    }
+                  >
+                    <Button onClick={() => linkClickedHandler(page)}>
+                      {page}
+                    </Button>
                   </Link>
                 </MenuItem>
               ))}
@@ -121,6 +133,7 @@ const NavBar = () => {
               <Link
                 style={{ textDecoration: "none" }}
                 to={page === "Home" || page === "Sign In" ? "/" : "/"}
+                onClick={() => linkClickedHandler(page)}
               >
                 <Button
                   key={page}
